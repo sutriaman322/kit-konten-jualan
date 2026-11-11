@@ -3,6 +3,8 @@
 Halaman promosi statis untuk produk digital **Kit Konten Jualan 30 Hari**.
 Tanpa framework, tanpa build step, tanpa backend. Siap GitHub Pages.
 
+Live: https://sutriaman322.github.io/kit-konten-jualan/
+
 ## Struktur
 
     index.html          satu file: HTML + CSS + JS inline
@@ -10,47 +12,39 @@ Tanpa framework, tanpa build step, tanpa backend. Siap GitHub Pages.
     .nojekyll           agar GitHub Pages tidak memproses lewat Jekyll
     robots.txt
 
-## WAJIB DIGANTI SEBELUM PUBLIK
+## STATUS: BELUM SIAP JUALAN
 
-Cari `LINK_LYNK` di `index.html` — ada **3 tempat** (hero, bagian harga,
-sticky CTA bawah). Ganti semuanya dengan URL produk Anda di lynk.id:
+Tombol beli masih memakai placeholder `LINK_LYNK` di **4 tempat**:
+
+1. tombol hero
+2. tombol di bagian harga
+3. sticky CTA bawah (mobile)
+4. `offers.url` di blok JSON-LD
+
+Selama placeholder ini belum diganti, semua tombol beli mengarah ke
+halaman mati. Ganti dengan URL produk lynk.id, misal:
 
     <a class="cta" href="https://lynk.id/namatoko/abc123">
 
-Ganti juga di blok JSON-LD paling bawah (`"url":"LINK_LYNK"`).
+Cara cepat:
 
-Kalau lupa, semua tombol beli mengarah ke halaman mati.
+    grep -n "LINK_LYNK" index.html
 
-## Ganti URL canonical & OG (setelah nama repo diketahui)
+Lalu commit dan push ulang.
 
-Di `<head>`, ganti `USERNAME` dan nama repo:
+## Deploy (sudah dilakukan)
 
-    https://USERNAME.github.io/kit-konten-landing/
+Repo: https://github.com/sutriaman322/kit-konten-jualan
+Pages: branch `main`, folder `/ (root)`, repo publik.
 
-Ini dipakai untuk `canonical`, `og:url`, dan `og:image`. Beberapa crawler
-(termasuk WhatsApp) butuh URL absolut untuk gambar pratinjau.
-
-## Deploy GitHub Pages (manual, tanpa gh CLI)
-
-1. Buat repo publik baru, misal `kit-konten-landing`.
-2. Unggah isi folder ini ke root repo (index.html harus di root).
-3. Repo → Settings → Pages → Source: *Deploy from a branch*
-   → Branch: `main`, folder: `/ (root)` → Save.
-4. Tunggu 1-2 menit, buka `https://USERNAME.github.io/kit-konten-landing/`.
-
-Lewat terminal:
+Push perubahan berikutnya cukup:
 
     cd ~/kit-konten/landing
-    git init
-    git add .
-    git commit -m "Landing Kit Konten Jualan 30 Hari"
-    git branch -M main
-    git remote add origin https://github.com/USERNAME/kit-konten-landing.git
-    git push -u origin main
+    git add -A
+    git commit -m "pesan perubahan"
+    git push
 
-Lalu aktifkan Pages seperti langkah 3.
-
-## Uji lokal sebelum push
+## Uji lokal
 
     cd ~/kit-konten/landing
     python -m http.server 8000
