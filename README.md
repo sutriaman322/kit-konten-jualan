@@ -12,25 +12,20 @@ Live: https://sutriaman322.github.io/kit-konten-jualan/
     .nojekyll           agar GitHub Pages tidak memproses lewat Jekyll
     robots.txt
 
-## STATUS: BELUM SIAP JUALAN
+## Link pembelian: SUDAH TERSAMBUNG
 
-Tombol beli masih memakai placeholder `LINK_LYNK` di **4 tempat**:
+Semua tombol beli mengarah ke produk lynk.id:
 
-1. tombol hero
-2. tombol di bagian harga
-3. sticky CTA bawah (mobile)
-4. `offers.url` di blok JSON-LD
+    https://lynk.id/sutri01/1jgvkd3mke04
 
-Selama placeholder ini belum diganti, semua tombol beli mengarah ke
-halaman mati. Ganti dengan URL produk lynk.id, misal:
+Titik yang tersambung: tombol hero, tombol bagian harga, sticky CTA
+mobile, dan `offers.url` di JSON-LD.
 
-    <a class="cta" href="https://lynk.id/namatoko/abc123">
+Kalau nanti pindah produk atau ganti URL toko, cari di `index.html`:
 
-Cara cepat:
+    grep -n "lynk.id" index.html
 
-    grep -n "LINK_LYNK" index.html
-
-Lalu commit dan push ulang.
+lalu ganti keempat titik itu sekaligus.
 
 ## Deploy (sudah dilakukan)
 
